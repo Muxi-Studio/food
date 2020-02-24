@@ -3,6 +3,7 @@ import { View } from "@tarojs/components";
 import PropTypes from "prop-types";
 import classNames from "classnames";
 // import { Component } from 'react'
+import './index.scss'
 
 const MIN_DISTANCE = 100;
 const MAX_INTERVAL = 10;
@@ -81,7 +82,7 @@ export default class MxTabs extends Component {
       );
     });
     return (
-      <View className='container'>
+      <View className='at-tabs'>
         <View className='at-tabs__header'>{tabItems}</View>
 
         <View

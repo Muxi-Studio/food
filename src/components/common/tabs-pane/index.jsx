@@ -2,6 +2,7 @@ import Taro, { Component } from "@tarojs/taro";
 import { View } from "@tarojs/components";
 import PropTypes from "prop-types";
 import classNames from "classnames";
+import './index.scss';
 
 export default class MxTabsPane extends Component {
   render() {
