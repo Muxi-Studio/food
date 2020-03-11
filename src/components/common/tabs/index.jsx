@@ -22,10 +22,10 @@ export default class MxTabs extends Component {
 
   handleTouchStart (e) {
     // 获取触摸时的原点
-    this._touchDot = e.touches[0].pageX
+    this.touchDot = e.touches[0].pageX
     // 使用js计时器记录时间
-    this._timer = setInterval(() => {
-      this._interval++
+    this.timer = setInterval(() => {
+      this.interval++
     }, 100)
   }
 
@@ -37,7 +37,8 @@ export default class MxTabs extends Component {
     const maxIndex = tabList.length;
 
     //为什么要小于10 interval，因为缓慢移动是不希望它去滚动的！
-    if (!this.isMoving && this.interval < MAX_INTERVAL && this.touchDot > 20) {
+    if (!this.isMoving  && this.interval < MAX_INTERVAL && this.touchDot > 20) {
+    
       // 向左滑动
       if (current + 1 < maxIndex && moveDistance <= -MIN_DISTANCE) {
         this.isMoving = true;

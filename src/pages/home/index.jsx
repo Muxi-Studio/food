@@ -26,9 +26,9 @@ export default class Index extends Taro.Component {
     ];
     return (
       <View className='index'>
-        <View className='input-container'>
+        {/* <View className='input-container'>
             <Input style='width:155px; height:32px; border:1px solid rgba(216,216,216,1)'></Input>
-        </View>
+        </View> */}
         <MxTabs
           current={this.state.current}
           tabList={tabList}

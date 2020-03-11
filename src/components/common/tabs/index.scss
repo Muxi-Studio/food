@@ -3,7 +3,7 @@ $at-tabs-pane-min-height: 100px;
 $at-tabs-default-color: hsla(34, 100%, 50%, 1);
 $at-tabs-color-active: hsla(34, 100%, 50%, 1);
 $at-tabs-bg-color: hsla(0, 0%, 95%, 1);
-$at-tabs-line-height: 4px;
+$at-tabs-line-height: 0.3em;
 
 #{$component} {
 //   width: 100%;
@@ -16,7 +16,7 @@ $at-tabs-line-height: 4px;
     justify-content: space-around;
     align-items: center;
     width: 100%;
-    height: 38px;
+    font-size: 0.54rem;
     text-align: center;
     white-space: nowrap;
     background-color: $at-tabs-bg-color;
@@ -33,9 +33,8 @@ $at-tabs-line-height: 4px;
   /* elements */
   &__item {
     position: relative;
-    flex: 1;
-    //padding: $spacing-v-lg $spacing-h-lg;
-    font-size: 13px;
+    // flex: 1;
+    padding: 1em 0 0.7em 0;
     text-overflow: ellipsis;
     overflow: hidden;
 
@@ -81,7 +80,8 @@ $at-tabs-line-height: 4px;
   }
 
   &--inactive {
-    height: 0;
-    overflow: hidden;
+    // height: 0;
+    // overflow: hidden;
+    display: none;
   }
 }
