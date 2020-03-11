@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="134.63" height="125.527" viewBox="0 0 134.63 125.527">
+  <defs>
+    <style>
+      .cls-1, .cls-4 {
+        fill: #ffe5af;
+      }
+
+      .cls-2, .cls-3 {
+        fill: none;
+      }
+
+      .cls-3, .cls-4 {
+        stroke: #ffcc60;
+      }
+
+      .cls-3 {
+        stroke-linecap: round;
+        stroke-width: 8px;
+        opacity: 0.5;
+      }
+
+      .cls-4 {
+        stroke-width: 0.5px;
+        font-size: 13px;
+        font-family: MicrosoftJhengHeiUIRegular, Microsoft JhengHei UI;
+        opacity: 0.79;
+      }
+
+      .cls-5 {
+        font-family: YuGothicUI-Regular, Yu Gothic UI;
+      }
+
+      .cls-6 {
+        font-family: SegoeUI, Segoe UI;
+      }
+
+      .cls-7 {
+        font-family: PingFangSC-Regular, PingFang SC;
+      }
+    </style>
+  </defs>
+  <g id="组_91" data-name="组 91" transform="translate(-117.885 -489.973)">
+    <g id="组_23" data-name="组 23" transform="matrix(0.999, 0.052, -0.052, 0.999, 126, 485.709)">
+      <g id="baseline-phone_iphone-24px" transform="matrix(-0.94, 0.342, -0.342, -0.94, 105.953, 67.252)">
+        <path id="路径_1445" data-name="路径 1445" class="cls-1" d="M31.311,65.6H7.455A7.458,7.458,0,0,1,0,58.149V7.455A7.458,7.458,0,0,1,7.455,0H31.311a7.458,7.458,0,0,1,7.455,7.455V58.149A7.458,7.458,0,0,1,31.311,65.6ZM19.383,2.982a4.473,4.473,0,1,0,4.473,4.473A4.467,4.467,0,0,0,19.383,2.982ZM32.8,14.91H5.964V56.658H32.8Z" transform="translate(14.91 2.982)"/>
+        <path id="路径_1446" data-name="路径 1446" class="cls-2" d="M0,71.568H71.568V0H0Z" transform="translate(0 0)"/>
+      </g>
+      <path id="路径_1449" data-name="路径 1449" class="cls-3" d="M7.28,0S-9.1,16.668,7.28,36.807" transform="translate(123.485 44.546) rotate(160)"/>
+      <path id="路径_1450" data-name="路径 1450" class="cls-3" d="M5.719,0s-12.867,13.093,0,28.915" transform="translate(107.92 47.078) rotate(160)"/>
+      <path id="路径_1447" data-name="路径 1447" class="cls-3" d="M5.719,0s-12.867,13.093,0,28.915" transform="matrix(0.94, -0.342, 0.342, 0.94, 16.332, 47.932)"/>
+      <path id="路径_1451" data-name="路径 1451" class="cls-3" d="M7.28,0S-9.1,16.668,7.28,36.807" transform="matrix(0.94, -0.342, 0.342, 0.94, 0, 49.382)"/>
+    </g>
+    <text id="摇动手机_帮您选择_" data-name="摇动手机，帮您选择
+" class="cls-4" transform="translate(190 595)"><tspan x="-58.5" y="0">摇动</tspan><tspan class="cls-5" y="0">手机，帮您</tspan><tspan y="0">选择</tspan><tspan class="cls-6" y="0"></tspan><tspan class="cls-7"><tspan x="0" y="17"></tspan></tspan></text>
+  </g>
+</svg>
