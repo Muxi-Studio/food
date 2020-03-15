@@ -1,7 +1,10 @@
 import Taro, { Component } from '@tarojs/taro'
 import { View } from '@tarojs/components'
-import MxIcon from '../../common/MxIcon/index';
+import MxIcon from '../../components/common/MxIcon/index';
 import './index.scss'
+import Fetch from '../../service/fetch';
+
+
 
 export default class Index extends Component {
 
@@ -14,21 +17,50 @@ export default class Index extends Component {
       super(...arguments);
       this.state = {
         datas:[
-          {name:'菜名菜名菜名',owner:'店家名称',introduce:'简短介绍：简短介绍简短介绍',hall:'所在食堂'},
-          {name:'菜名菜名菜名',owner:'店家名称',introduce:'简短介绍：简短介绍简短介绍',hall:'所在食堂'},
-          {name:'菜名菜名菜名',owner:'店家名称',introduce:'简短介绍：简短介绍简短介绍',hall:'所在食堂'}
-        ]
+          // {name:'菜名菜名菜名',owner:'店家名称',introduce:'简短介绍：简短介绍简短介绍',hall:'所在食堂'},
+          // {name:'菜名菜名菜名',owner:'店家名称',introduce:'简短介绍：简短介绍简短介绍',hall:'所在食堂'},
+          // {name:'菜名菜名菜名',owner:'店家名称',introduce:'简短介绍：简短介绍简短介绍',hall:'所在食堂'}
+        ],
+        page:1
       };
     }
     componentWillMount () { }
   
-    componentDidMount () { }
+    componentDidMount () { 
+      this.getEat();
+    }
   
     componentWillUnmount () { }
   
     componentDidShow () { }
   
     componentDidHide () { }
+
+    getEat(){
+      Fetch(
+        '/api/v1/food/recommend/',
+        {
+          page:this.state.page,
+          limit:10
+        },
+        'GET'
+    ).then(res=>{
+        console.log(res);
+        if(res.code==0){
+          let newdatas=res.data;
+        if(newdatas!=null){
+          this.setState({
+            datas:newdatas
+          });
+        }else{
+          Taro.showToast({
+            title:'到底了',
+            duration: 2000
+          });
+        }
+        }
+      })
+    }
   
     render () {
       const content = (
@@ -39,23 +71,24 @@ export default class Index extends Component {
         <View className='boxes'>
           <View className='card'>
             <View className='icon'>
-            <MxIcon type='shop' width='77' height='72'></MxIcon>
+              {/* <Image src={data.picture_url}></Image> */}
+              <MxIcon type='shop' width='77' height='72'></MxIcon>
             </View>
             <View className='news'>
               <View className='name'>
                  {data.name}
               </View>
               <View className='owner'>
-                 {data.owner}
+                 {data.resaurant_name}
               </View>
               <View className='label'>
                 <MxIcon type='label1' width='19' height='30'></MxIcon>
               </View>
               <View className='introduce'>
-                {data.introduce}
+                {data.introduction}
               </View>
               <View className='mess'>
-                 {data.hall}
+                 {data.canteen_name}
               </View>
               <View className='position'>
                 <MxIcon type='position' width='21' height='20'></MxIcon>

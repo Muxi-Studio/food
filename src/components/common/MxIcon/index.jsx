@@ -38,7 +38,7 @@ export default class MxIcon extends MxComponent {
   }
 
   render() {
-    const { className, width, height, type, outerStyle } = this.props;
+    const { className, width, height, type, outerStyle,color } = this.props;
     const map = new Map([
       ['mobile', mobile],
       ['search', search],
@@ -59,7 +59,8 @@ export default class MxIcon extends MxComponent {
 
     const rootStyle = {
       width: `${Taro.pxTransform(parseInt(width))}`,
-      height: `${Taro.pxTransform(parseInt(height))}`
+      height: `${Taro.pxTransform(parseInt(height))}`,
+      color:`${color}`
     };
     return (
       <View
@@ -81,6 +82,7 @@ MxIcon.defaultProps = {
   width: 40,
   height: 40,
   type: '',
+  color:'',
   outerStyle: {},
   onClick: () => {}
 };
@@ -91,5 +93,6 @@ MxIcon.propTypes = {
   height: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   type: PropTypes.string,
   outerStyle: PropTypes.object,
-  onClick: PropTypes.func
+  onClick: PropTypes.func,
+  color:PropTypes.string,
 };

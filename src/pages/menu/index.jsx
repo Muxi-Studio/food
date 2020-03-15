@@ -23,7 +23,7 @@ export default class Index extends Component {
     }
     ChangeTohall() {
       Taro.navigateTo({
-        url: '/pages/hall/index'
+        url: '../hall/index'
       });
     }
   

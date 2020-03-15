@@ -68,6 +68,14 @@ const config = {
     }
   },
   h5: {
+    devServer:{
+      proxy:{
+        '/api':{
+          target:'http://food.test.muxixyz.com/',
+          changeOrigin:'true'
+        }
+      }
+    },
     publicPath: '/',
     staticDirectory: 'static',
     module: {

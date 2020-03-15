@@ -2,14 +2,14 @@ import Taro from '@tarojs/taro';
 
 // Fetch(url, data).then((res) => { console.log(res)})
 
-const preHttp = 'http://food.test.muxixyz.com/';
+//  const preHttp = 'http://food.test.muxixyz.com';
 const Fetch = (url, data = {}, method = 'GET') => {
   const header = {
-    'content-type': 'application/json',
-    token: Taro.getStorageSync('token')
+    'content-type': 'application/x-www-form-urlencoded; charset=UTF-8',
+    'Access-Control-Allow-Origin': '*',
   };
   return Taro.request({
-    url: preHttp + url,
+    url:url,
     data,
     method,
     header

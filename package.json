@@ -8,6 +8,7 @@
     "typescript": false,
     "css": "sass"
   },
+  "proxy":"http://food.test.muxixyz.com",
   "scripts": {
     "build:weapp": "taro build --type weapp",
     "build:swan": "taro build --type swan",
