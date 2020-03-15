@@ -1,0 +1,48 @@
+:root{
+    box-sizing: border-box;
+}
+*,
+::before,
+::after{
+    box-sizing: inherit;
+}
+.input-container{
+    font-size: 0.58rem;
+    border-top: 1px solid rgba(240, 166, 43, 1);
+    height: 4em;
+    box-sizing: border-box;
+    padding: 0 1.14em;
+    display: flex;
+    align-items: center;
+    .icon{
+        width:2.85em;
+        height: 2.85em;
+        border: 1px solid rgba(255, 126, 51, 1);
+        border-radius: 50%;
+    }
+    .product-name{
+        color: rgba(255, 126, 51, 1);
+        font-size: 0.91rem;
+        margin-left:0.45em;
+        margin-right: 1.5em;
+    }
+    .search{
+        display: flex;
+        align-items: center;
+        width: 45%;
+        padding: 0.35em 0.64em;
+        background:rgba(240,240,239,1);
+        border:1px solid rgba(222,216,216,1);
+        border-radius: 0.35em;
+    }
+}
+.input{
+    width: 90%;
+}
+.search-icon{
+    width: 1.21em;
+    height: 1.21em;
+}
+.input-placehouder{
+    color: rgba(142,142,146,1);
+}

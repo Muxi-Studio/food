@@ -14,13 +14,13 @@ class App extends Component {
   config = {
     pages: [
       'pages/home/index',
-      'pages/hall/index'
+      'pages/hall/index',
+      'pages/search/index',
+      'pages/searchResult/index',
     ],
     window: {
       backgroundTextStyle: 'light',
-      navigationBarBackgroundColor: '#fff',
-      navigationBarTitleText: 'WeChat',
-      navigationBarTextStyle: 'black'
+      navigationStyle: 'custom'
     }
   }
 

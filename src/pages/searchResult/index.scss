@@ -1,0 +1,123 @@
+:root{
+    box-sizing: border-box;
+}
+*,
+::before,
+::after{
+    box-sizing: inherit;
+}
+.sr_index{
+    // height: 100vh;
+}
+.sr_navigationbar{
+    padding-top: 0.78em;
+    border-top: 1px solid rgba(240, 166, 43, 1);
+    display: flex;
+    align-items: center;
+    font-size: 0.58rem;
+    .sr_back-icon{
+        // width:11.6%;
+        margin: 0 1em;
+        height: 11.6%;
+    }
+    .sr_search{
+        margin-left: 0.85em;
+        width:80.5%;
+        border-radius: 0.28em;
+        border:1px solid rgba(222,216,216,1);
+        background:rgba(240,240,239,1);
+        .sr_search-icon{
+            margin: 0.5em 0.74em;
+            display: inline-flex;
+            vertical-align: middle;
+        }
+        .sr_input{
+            width:72%;
+            display: inline-block;
+            vertical-align: middle;
+        }
+    }
+}
+.sr_input-placeholder{
+    color: rgba(142, 142, 146, 1);
+}
+.sr_no-answer{
+    font-size: 0.83em;
+    color: rgba(142, 142, 146, 1);
+    position: absolute;
+    top: 45%;
+    left: 8%;
+    text-align: center;
+}
+.sr_switch-bar{
+    width:100%;
+    font-size: 0.666rem;
+    text-align: center;
+    .sr_bar-item{
+        display:inline-block;
+        width:50%;
+        padding: 0.8em 0;
+    }
+    .sr_bar-item-checked{
+        display: inline-block;
+        width:50%;
+        padding: 0.8em 0;
+        color:rgba(255,149,13,1);
+        border-bottom: 2px solid rgba(255,149,13,1);
+    }
+}
+.sr_result-container{
+    font-size: 0.58rem;
+    padding: 0.85em;
+    color: rgba(102, 102, 102, 1);
+}
+.sr_item{
+    width: 100%;
+    border:2px solid rgba(255,219,173,1);;
+    border-radius:0.35em;
+    margin-bottom: 1.14em;
+    .sr_image-box{
+        display: inline-block;
+        vertical-align: middle;
+        width:27%;
+        height: 7.2em;
+        background-color: rgba(255, 219, 173, 1);
+        .sr_image{
+            margin: 0.57em;
+            width:100%;
+            height: 100%;
+            // display: inline-block;
+        }
+    }
+}
+.sr_info{
+    display:inline-block;
+    vertical-align: middle;
+    padding: 1.28em;
+    .sr_fir-line{
+        .sr_fir-name{
+            font-size:0.666rem;
+            color: rgba(37, 38, 42, 1);
+            width: 96px;
+            margin-right: 1.3em;
+            overflow:hidden; //超出的文本隐藏
+            text-overflow:ellipsis; //溢出用省略号显示
+            white-space:nowrap; //溢出不换行
+        }
+        .sr_sec-name{
+            width:112px;
+            overflow:hidden; //超出的文本隐藏
+            text-overflow:ellipsis; //溢出用省略号显示
+            white-space:nowrap; //溢出不换行
+        }
+    }
+    .sr_sec-line{
+        margin-top: 1.28em;
+        .sr_canteen{
+            margin-right: 1.3em;
+        }
+        .sr_storey{
+            
+        }
+    }
+}

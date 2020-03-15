@@ -1,10 +1,12 @@
 import Taro from "@tarojs/taro";
-import { View,Input } from "@tarojs/components";
+import { View,Input,Text } from "@tarojs/components";
 import MxTabs from "../../components/common/tabs/index";
 import  MxTabsPane  from "../../components/common/tabs-pane";
 import  Shake  from "../../components/page/shake";
 import Eat from "../../components/page/eat/index"
 import Menu from "../../components/page/menu"
+import MxIcon from "../../components/common/MxIcon"
+import './index.scss'
 
 export default class Index extends Taro.Component {
   constructor() {
@@ -18,6 +20,9 @@ export default class Index extends Taro.Component {
       current: value
     });
   }
+  handleFocus(){
+    Taro.navigateTo({url:'/pages/search/index'})
+  }
   render() {
     const tabList = [
       { title: "您的附近" },
@@ -25,10 +30,19 @@ export default class Index extends Taro.Component {
       { title: "在线菜单" }
     ];
     return (
-      <View className='index'>
-        {/* <View className='input-container'>
-            <Input style='width:155px; height:32px; border:1px solid rgba(216,216,216,1)'></Input>
-        </View> */}
+      <View className='homepage'>
+        <View className='input-container'>
+            <View className='icon'></View>
+            <Text className='product-name'>匣子美食</Text>
+            <View className='search'>
+              <Input className='input' placeholder='搜索食物、窗口' placeholderClass='input-placehouder'
+                onFocus={this.handleFocus.bind(this)}
+              ></Input>
+              <View className='search-icon'>
+                <MxIcon type='search'></MxIcon>
+              </View>
+            </View>
+        </View>
         <MxTabs
           current={this.state.current}
           tabList={tabList}
