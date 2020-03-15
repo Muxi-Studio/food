@@ -11,12 +11,15 @@ if (process.env.NODE_ENV !== 'production' && process.env.TARO_ENV === 'h5')  {
 
 class App extends Component {
 
+  // eslint-disable-next-line react/sort-comp
   config = {
     pages: [
       'pages/home/index',
       'pages/hall/index',
       'pages/search/index',
       'pages/searchResult/index',
+      'pages/eat/index',
+      'pages/menu/index'
     ],
     window: {
       backgroundTextStyle: 'light',

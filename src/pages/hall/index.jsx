@@ -2,6 +2,7 @@ import Taro, { Component } from '@tarojs/taro'
 import { View } from '@tarojs/components'
 import MxIcon from '../../components/common/MxIcon/index';
 import './index.scss'
+import Fetch from '../../service/fetch';
 
 export default class Index extends Component {
 
@@ -18,7 +19,8 @@ export default class Index extends Component {
           {hall:'巧媳妇面馆'},
           {hall:'巧媳妇面馆'}
         ],
-        hidden: false
+        hidden: false,
+        page:1
       };
     }
 
@@ -36,13 +38,30 @@ export default class Index extends Component {
   
     componentWillMount () { }
   
-    componentDidMount () { }
+    componentDidMount () { 
+      this.getHall();
+    }
   
     componentWillUnmount () { }
   
     componentDidShow () { }
   
     componentDidHide () { }
+
+    getHall(){
+      Fetch(
+        '/api/v1/restaurant/list/',
+        {
+          page:this.state.page,
+          limit:10,
+          c:'东一',
+          s:'1'
+        },
+        'GET'
+      ).then(res=>{
+        console.log(res);
+      })
+    }
   
     render () {
     const hidden = this.state.hidden;

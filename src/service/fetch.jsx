@@ -9,7 +9,7 @@ const Fetch = (url,  method = 'GET',data = {}) => {
     // token: Taro.getStorageSync('token')
   };
   return Taro.request({
-    url: preHttp + url,
+    url:preHttp + url,
     data,
     method,
     header
