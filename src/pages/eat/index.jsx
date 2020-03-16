@@ -39,11 +39,11 @@ export default class Index extends Component {
     getEat(){
       Fetch(
         '/api/v1/food/recommend/',
+        'GET',
         {
           page:this.state.page,
           limit:10
         },
-        'GET'
     ).then(res=>{
         console.log(res);
         if(res.code==0){

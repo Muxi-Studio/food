@@ -21,9 +21,10 @@ export default class Index extends Component {
         ]
       };
     }
-    ChangeTohall() {
+    handleHall(title) {
+      console.log(title);
       Taro.navigateTo({
-        url: '../hall/index'
+        url: `../hall/index?title=${title}`
       });
     }
   
@@ -44,8 +45,8 @@ export default class Index extends Component {
       return (
         // eslint-disable-next-line react/jsx-key
         <View className='cards'>
-          <View className='fiche' onClick={this.ChangeTohall.bind(this)}>
-               <View className='title'>
+          <View className='fiche'>
+               <View className='title'onClick={this.handleHall.bind(this,data.title)}>
                    {data.title}
                </View>
           </View>

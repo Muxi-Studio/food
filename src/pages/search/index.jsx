@@ -1,5 +1,5 @@
 import Taro, { Component } from '@tarojs/taro'
-import { View, Input, Text } from '@tarojs/components'
+import { View, Input } from '@tarojs/components'
 import './index.scss'
 import MxIcon from '../../components/common/MxIcon'
 import Fetch from '../../service/fetch'
@@ -21,7 +21,7 @@ export default class Index extends Component {
   componentWillMount () {}
 
   componentDidMount () { 
-      Fetch('search/hot').then(
+      Fetch('/api/v1/search/hot').then(
           res =>{
               if(res){
                   console.log(res);

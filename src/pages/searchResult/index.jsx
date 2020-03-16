@@ -37,7 +37,7 @@ export default class Index extends Component {
   }
 
   componentDidMount() {
-    Fetch("/search/food?st=" + this.state.value + "&page=1&limit=30").then(
+    Fetch("/api/v1//search/food?st=" + this.state.value + "&page=1&limit=30").then(
       res => {
         if (res) {
           console.log(res);

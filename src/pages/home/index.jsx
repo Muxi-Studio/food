@@ -3,8 +3,8 @@ import { View,Input,Text } from "@tarojs/components";
 import MxTabs from "../../components/common/tabs/index";
 import  MxTabsPane  from "../../components/common/tabs-pane";
 import  Shake  from "../../components/page/shake";
-import Eat from "../../components/page/eat/index"
-import Menu from "../../components/page/menu"
+import Eat from "../eat/index"
+import Menu from "../menu/index"
 import MxIcon from "../../components/common/MxIcon"
 import './index.scss'
 
