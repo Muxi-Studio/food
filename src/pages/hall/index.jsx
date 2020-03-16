@@ -18,6 +18,7 @@ export default class Index extends Component {
         hidden: false,
         page:1,
         c:'',
+        cn:'',
         mask:false,
         maskshow: 'maskshow',
         masklist: 'masklist',
@@ -68,10 +69,20 @@ export default class Index extends Component {
     }
   
     componentWillMount () { 
-      let cn=this.$router.params.title
+      let cn=this.$router.params.title;
       this.setState({
-        c:cn
-      })
+        cn:cn
+      });
+      let n=cn.search('食堂');
+      if(n==-1){
+        this.setState({
+          c:cn
+        });
+      }else{
+        this.setState({
+          c:cn.substr(0,2)
+        })
+      }
     }
   
     componentDidMount () { 
@@ -141,7 +152,7 @@ export default class Index extends Component {
   
     render () {
     const hidden = this.state.hidden;
-    const hall = this.state.c;
+    const hall = this.state.cn;
     const mask = this.state.mask;
     const per = this.state.per;
     const details=this.state.details;
