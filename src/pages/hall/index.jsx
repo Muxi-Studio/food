@@ -1,5 +1,5 @@
 import Taro, { Component } from '@tarojs/taro'
-import { View } from '@tarojs/components'
+import { View,ScrollView,Text } from '@tarojs/components'
 import MxIcon from '../../components/common/MxIcon/index';
 import './index.scss'
 import Fetch from '../../service/fetch';
@@ -17,6 +17,7 @@ export default class Index extends Component {
         datas:[],
         hidden: false,
         page:1,
+        s:1,
         c:'',
         cn:'',
         mask:false,
@@ -25,6 +26,7 @@ export default class Index extends Component {
         per:1,
         id: 1,
         details:'',
+        floor:false,
         bill:[
           {name:'菜名菜名',price:'5元'},
           {name:'菜名菜名',price:'5元'},
@@ -96,25 +98,33 @@ export default class Index extends Component {
     componentDidHide () { }
 
     getHall(){
+      let ndatas=this.state.datas
       console.log(this.state.c)
       Fetch(
         '/api/v1/restaurant/list/',
         'GET',
         {
           page:this.state.page,
-          limit:10,
+          limit:5,
           c:this.state.c,
-          s:'1'
+          s:this.state.s
         },
       ).then(res=>{
         console.log(res);
         if(res.code==0){
           let newdatas=res.data;
-          if(newdatas!=null){
-            this.setState({
-              datas:newdatas,
-            });
-          }else{
+          if(this.state.page>1){
+            if(newdatas!=null){
+              ndatas=ndatas.concat(newdatas)
+              this.setState({
+                datas:ndatas
+              })
+            }}else{
+              this.setState({
+                datas:newdatas,
+              });
+            }
+          if(newdatas==null){
             Taro.showToast({
               title:'到底了',
               duration: 2000
@@ -149,6 +159,46 @@ export default class Index extends Component {
        }
       })
     }
+    // onScrollToUpper(){
+    //   if(this.state.page>1)
+    //   {
+    //     this.setState({
+    //       page:this.state.page-1
+    //     },
+    //     ()=>{
+    //       this.getHall()
+    //     }
+    //     )
+    //   }
+    // }
+    onScrollToLower(){
+      this.setState({
+        page:this.state.page+1
+      },
+      ()=>{
+        this.getHall()
+      }
+      )
+    }
+
+    onCheck2(){
+      this.setState({
+        s:2,
+        floor:!this.state.floor
+      },
+      ()=>{
+        this.getHall();
+      })
+    }
+    onCheck1(){
+      this.setState({
+        s:1,
+        floor:!this.state.floor
+      },
+      ()=>{
+        this.getHall();
+      })
+    }
   
     render () {
     const hidden = this.state.hidden;
@@ -156,6 +206,8 @@ export default class Index extends Component {
     const mask = this.state.mask;
     const per = this.state.per;
     const details=this.state.details;
+    const floor=this.state.floor;
+    const Threshold=10
     const list =(
       <View>
          <View
@@ -195,7 +247,14 @@ export default class Index extends Component {
       </View>
     )
     const content = (
-    <View>
+    <ScrollView
+      style='height:100%'
+      scrollY
+      lowerThreshold={Threshold}
+      upperThreshold={Threshold}
+      scrollWithAnimation
+      onScrollToLower={this.onScrollToLower.bind(this)}
+    >
     {this.state.datas.map(data => {
     return (
       // eslint-disable-next-line react/jsx-key
@@ -210,7 +269,7 @@ export default class Index extends Component {
     );
     })
   }
-  </View>
+  </ScrollView>
   );
     return(
       <View className='index'>
@@ -223,7 +282,8 @@ export default class Index extends Component {
          {hall}
        </View>
        <View className='one'>
-         一楼
+         {!floor&&<Text>一楼</Text>}
+         {floor&&<Text>二楼</Text>}
         <View className='pull' onClick={this.handlePull.bind(this)}>
           <MxIcon type='pull' width='12' height='7'></MxIcon>
         </View>
@@ -231,19 +291,38 @@ export default class Index extends Component {
       </View>
       {hidden && 
         <View className='select'>
+         {!floor&&
           <View className='floor1'>
-            一楼
-            <View className='check'>
-              <MxIcon type='check' width='15' height='15'></MxIcon>
-            </View>
+          一楼
+          <View className='check'>
+            <MxIcon type='check' width='15' height='15'></MxIcon>
           </View>
+        </View>
+         }
+         {!floor&&
           <View className='floor2'>
-            二楼
-            <View className='uncheck'>
-              <MxIcon type='uncheck' width='15' height='15'></MxIcon>
-            </View>
+             二楼
+            <View className='uncheck' onClick={this.onCheck2.bind(this)}>
+               <MxIcon type='uncheck' width='15' height='15'></MxIcon>
+             </View>
+           </View>}
+        {floor&&
+          <View className='floor2'>
+          一楼
+          <View className='uncheck' onClick={this.onCheck1.bind(this)}>
+            <MxIcon type='uncheck' width='15' height='15'></MxIcon>
           </View>
-        </View>}
+        </View>
+         }
+        {floor&&
+          <View className='floor1'>
+             二楼
+            <View className='check'>
+               <MxIcon type='check' width='15' height='15'></MxIcon>
+             </View>
+          </View>}
+         </View>
+         }
       {content}
       </View>
     );

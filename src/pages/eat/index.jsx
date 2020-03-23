@@ -1,5 +1,5 @@
 import Taro, { Component } from '@tarojs/taro'
-import { View } from '@tarojs/components'
+import { View,ScrollView } from '@tarojs/components'
 import MxIcon from '../../components/common/MxIcon/index';
 import './index.scss'
 import Fetch from '../../service/fetch';
@@ -37,34 +37,57 @@ export default class Index extends Component {
     componentDidHide () { }
 
     getEat(){
+      let ndatas=this.state.datas
       Fetch(
         '/api/v1/food/recommend/',
         'GET',
         {
           page:this.state.page,
-          limit:10
+          limit:5
         },
     ).then(res=>{
         console.log(res);
         if(res.code==0){
           let newdatas=res.data;
-        if(newdatas!=null){
-          this.setState({
-            datas:newdatas
-          });
-        }else{
-          Taro.showToast({
-            title:'到底了',
-            duration: 2000
-          });
-        }
-        }
+          if(this.state.page>1){
+            if(newdatas!=null){
+              ndatas=ndatas.concat(newdatas)
+              this.setState({
+                datas:ndatas
+              })
+            }}else{
+              this.setState({
+                datas:newdatas,
+              });
+            }
+          if(newdatas==null){
+            Taro.showToast({
+              title:'到底了',
+              duration: 2000
+            });
+          }
+       }
       })
+    }
+    onScrollToLower(){
+      this.setState({
+        page:this.state.page+1
+      },
+      ()=>{
+        this.getEat()
+      }
+      )
     }
   
     render () {
+      const Threshold=10
       const content = (
-      <View>
+      <ScrollView
+        scrollY
+        lowerThreshold={Threshold}
+        upperThreshold={Threshold}
+        onScrollToLower={this.onScrollToLower.bind(this)}
+      >
       {this.state.datas.map(data => {
       return (
         // eslint-disable-next-line react/jsx-key
@@ -99,7 +122,7 @@ export default class Index extends Component {
       );
       })
     }
-    </View>
+    </ScrollView>
     );
       return(
         <View className='index'>
