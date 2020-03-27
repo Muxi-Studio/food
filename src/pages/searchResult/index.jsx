@@ -37,7 +37,7 @@ export default class Index extends Component {
   }
 
   componentDidMount() {
-    Fetch("/api/v1//search/food?st=" + this.state.value + "&page=1&limit=30").then(
+    Fetch("/api/v1/search/food?st=" + this.state.value + "&page=1&limit=30").then(
       res => {
         if (res) {
           console.log(res);
@@ -58,8 +58,8 @@ export default class Index extends Component {
   getData() {
     const url =
       this.state.checkedItem == "food"
-        ? "search/food?st="
-        : "search/restaurant?st=";
+        ? "/api/v1/search/food?st="
+        : "/api/v1/search/restaurant?st=";
     const food = this.state.checkedItem == "food" ? "true" : false;
     const page = this.state.checkedItem == "food" ? this.pageF : this.pageS;
     Fetch(url + this.state.value + "&limit=30&page=" + page).then(res => {
@@ -107,8 +107,8 @@ export default class Index extends Component {
   handleConfirm(e) {
     const url =
       this.state.checkedItem == "food"
-        ? "search/food?st="
-        : "search/restaurant?st=";
+        ? "/api/v1/search/food?st="
+        : "/api/v1/search/restaurant?st=";
     const food = this.state.checkedItem == "food" ? "true" : false;
     this.history.push(e.target.value);
     this.newArr(this.history);
