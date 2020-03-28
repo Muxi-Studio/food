@@ -248,7 +248,7 @@ export default class Index extends Component {
     )
     const content = (
     <ScrollView
-      style='height:100%'
+      style='height:27.0833rem'
       scrollY
       lowerThreshold={Threshold}
       upperThreshold={Threshold}
@@ -260,7 +260,7 @@ export default class Index extends Component {
       // eslint-disable-next-line react/jsx-key
       <View className='boxes'>
       <View className='box' onClick={this.handleList.bind(this,data.restaurant_id)}>
-        <MxIcon type='example' width='338' height='119'></MxIcon>
+        <MxIcon type='example' width='400' height='200'></MxIcon>
         <View className='place'>
             {data.restaurant_name}
         </View>
@@ -272,7 +272,7 @@ export default class Index extends Component {
   </ScrollView>
   );
     return(
-      <View className='index'>
+      <View className='indexh'>
         {mask && list}
       <View className='bar'>
        <View className='back' onClick={this.ChangeTohome.bind(this)}>

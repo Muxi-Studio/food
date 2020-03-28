@@ -57,7 +57,7 @@ export default class Index extends Component {
    </View>
  );
  return(
-  <View className='index'>
+  <View className='indexm'>
   {content}
   </View>
 );

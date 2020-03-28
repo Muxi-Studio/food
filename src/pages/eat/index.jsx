@@ -1,5 +1,5 @@
 import Taro, { Component } from '@tarojs/taro'
-import { View,ScrollView } from '@tarojs/components'
+import { View,ScrollView,Text } from '@tarojs/components'
 import MxIcon from '../../components/common/MxIcon/index';
 import './index.scss'
 import Fetch from '../../service/fetch';
@@ -16,7 +16,8 @@ export default class Index extends Component {
     constructor() {
       super(...arguments);
       this.state = {
-        datas:[
+        datas:[],
+        types:['label1','label2','label3','label4','label5',
           // {name:'菜名菜名菜名',owner:'店家名称',introduce:'简短介绍：简短介绍简短介绍',hall:'所在食堂'},
           // {name:'菜名菜名菜名',owner:'店家名称',introduce:'简短介绍：简短介绍简短介绍',hall:'所在食堂'},
           // {name:'菜名菜名菜名',owner:'店家名称',introduce:'简短介绍：简短介绍简短介绍',hall:'所在食堂'}
@@ -46,7 +47,7 @@ export default class Index extends Component {
           limit:5
         },
     ).then(res=>{
-        // console.log(res);
+        console.log(res);
         if(res.code==0){
           let newdatas=res.data;
           if(this.state.page>1){
@@ -81,6 +82,8 @@ export default class Index extends Component {
   
     render () {
       const Threshold=10
+      const types=this.state.types
+      let number=-1
       const content = (
       <ScrollView
         scrollY
@@ -89,6 +92,12 @@ export default class Index extends Component {
         onScrollToLower={this.onScrollToLower.bind(this)}
       >
       {this.state.datas.map(data => {
+        if(number<5)
+        {
+          number=number+1
+        }else{
+          number=0;
+        }
       return (
         // eslint-disable-next-line react/jsx-key
         <View className='boxes'>
@@ -105,7 +114,8 @@ export default class Index extends Component {
                  {data.resaurant_name}
               </View>
               <View className='label'>
-                <MxIcon type='label1' width='19' height='30'></MxIcon>
+                <Text className='num'>{number+1}</Text>
+                <MxIcon type={types[number]} width='30' height='40'></MxIcon>
               </View>
               <View className='introduce'>
                 {data.introduction}

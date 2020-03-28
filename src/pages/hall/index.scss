@@ -1,72 +1,68 @@
-.index{
-    width: 375px;
-    height: 600px;
-}
 .back{
     display: inline-block;
 }
 .hall{
-    font-size:25px;
+    font-size:1.042rem;
     font-weight:400;
-    line-height:36px;
+    line-height:1.5rem;
     color:rgba(255,145,0,1);
-    letter-spacing:10px;
+    letter-spacing:0.412rem;
     opacity:1;
     display: inline-block;
-    margin: 10px 34px 3px 84px;
+    margin: 0.412rem 1.417rem 0.125rem 3.5rem;
 }
 .one{
-    font-size: 18px;
+    font-size: 0.75rem;
     color: #707070;
     display: inline-block;
 }
 .pull{
     display: inline-block;
-    margin-left: 6px;
+    margin-left: 0.25rem;
 }
 .box{
-    width:338px;
-    height:157px;
+    width:14.083rem;
+    height:6.542rem;
     background:rgba(255,255,255,1);
-    box-shadow:0px 3px 6px rgba(0,0,0,0.16);
+    box-shadow:0px 0.125rem 0.25rem rgba(0,0,0,0.16);
     opacity:1;
-    border-radius:10px;
-    margin: 20px 18px 0px 19px;
+    border-radius:0.417rem;
+    margin: 0.833rem 0.75rem 0px 0.792rem;
     .place{
-        font-size:18px;
+        font-size:0.75rem;
         font-family:PingFang SC;
         font-weight:500;
-        line-height:24px;
+        line-height:1rem;
         color:rgba(67,67,67,1);
         opacity:1;  
-        margin: 7px 196px 8px 14px;   
+        margin: 0.292rem 8.167rem 0.333rem 0.583rem;   
     }
 }
 .select{
-    width:92px;
-    height:71px;
+    width:3.833rem;
+    height:2.9583rem;
     background:rgba(255,255,255,1);
     opacity:1;
-    margin-left: 262px;
+    margin-left: 10.917rem;
     z-index: 1005;
     position: absolute;
     .floor1{
-        font-size: 18px;
+        font-size: 0.75rem;
         color: #FF8C0F;
-        margin: 8px 0px 0px 12px;
+        margin: 0.333rem 0px 0px 0.5rem;
     }
     .check{
         display: inline-block;
-        margin-left: 15px;
+        margin-left: 0.625rem;
     }
     .floor2{
-        font-size: 18px;
+        font-size: 0.75rem;
         color: #707070;
-        margin: 8px 0px 0px 12px;
+        margin: 0.333rem 0px 0px 0.5rem;
     }
     .uncheck{
         display: inline-block;
-        margin-left: 15px;
+        margin-left: 0.625rem;
     }
 }
 .unmasklist{
@@ -78,23 +74,23 @@
 .masklist{
     position: absolute;
     z-index: 1005;
-    top: 50%;
+    top: 100%;
     left: 50%;
     transform:translate(-50%, -50%);
     opacity: 1;
 }
 .list{
     background:#FFFFFF;
-    width:343px;
-    height:554px;
+    width:14.292rem;
+    height:20.833rem;
     background:rgba(251,251,251,1);
     opacity:1;
-    border-radius:10px;
+    border-radius:0.417rem;
     overflow-y:auto;
 }
 .maskshow{
     width: 100%;
-    height: 100%;
+    height: 200%;
     background: rgb(7, 7, 7);
     position: absolute;
     z-index: 1000;
@@ -103,64 +99,64 @@
     opacity: 0.6;
 }
 .picture{
-    margin:16px 16px 0px 16px;
+    margin:0.667rem 0.667rem 0px 0.667rem;
 }
 .window{
-    font-size:20px;
+    font-size:0.833rem;
     font-weight:400;
-    line-height:27px;
+    line-height:1.125rem;
     color:rgba(112,112,112,1);
     opacity:1;
-    margin: 15px 90px 10px 17px;
+    margin: 0.625rem 3.75rem 0.417rem 0.708rem;
     display: inline-block;
 }
 .price{
-    font-size:14px;
+    font-size:0.583rem;
     font-family:PingFang SC;
     font-weight:400;
-    line-height:22px;
+    line-height:0.917rem;
     color:rgba(112,112,112,1);
     opacity:1;
-    margin-top:20px ;
+    margin-top:0.833rem;
     display: inline-block;
-    margin-right: 16px;
+    margin-right: 0.667rem;
 }
 .evaluate{
-    font-size:16px;
+    font-size:0.667rem;
     font-family:PingFang SC;
     font-weight:400;
-    line-height:22px;
+    line-height:0.917rem;
     color:rgba(112,112,112,1);
     opacity:1;
-    margin-left: 20px;
+    margin-left: 0.833rem;
 }
 .content{
-    font-size:20px;
+    font-size:0.833rem;
     font-family:PingFang SC;
     font-weight:400;
-    line-height:22px;
+    line-height:0.917rem;
     color:rgba(112,112,112,1);
     opacity:1;
-    margin-top: 17px;
-    margin-left: 16px;
+    margin-top: 0.708rem;
+    margin-left: 0.667rem;
 }
 .bill{
     display: inline-flex;
     .dish{
-        font-size:16px;
+        font-size:0.667rem;
         font-family:PingFang SC;
         font-weight:400;
-        line-height:21px;
+        line-height:0.875rem;
         color:rgba(67,67,67,1);
         opacity:1;
-        margin: 0px 44px 0px 17px;
+        margin: 0px 1.833rem 0px 0.708rem;
         letter-spacing: normal;
     }
     .money{
-        font-size:15px;
+        font-size:0.625rem;
         font-family:PingFang SC;
         font-weight:400;
-        line-height:20px;
+        line-height:0.833rem;
         color:rgba(67,67,67,1);
         opacity:1;
         letter-spacing: normal;

@@ -1,25 +1,23 @@
-.index{
-    width:375px;
-    height:667px;
+.indexm{
+    padding:0.792rem;
 }
 .fiche{
-    width:337px;
-    height:63px;
+    height:2.625rem;
     background:rgba(255,255,255,1);
     box-shadow:0px 3px 6px rgba(0,0,0,0.16);
     opacity:1;
-    border-radius:5px;
-    border-top: 10px solid #FFDBAD;
-    margin: 17px 20px 0px 20px;
+    border-radius:0.208rem;
+    border-top: 0.417rem solid #FFDBAD;
+    margin-bottom: 0.791rem;
     
 }
 .title{
-    font-size:23px;
+    font-size:0.959rem;
     font-weight:500;
-    line-height:32px;
+    line-height:1.333rem;
     color:rgba(67,67,67,1);
     opacity:1;
     text-align: center;
-    margin-top: 6px;
-    letter-spacing:10px;
+    margin-top: 0.25rem;
+    letter-spacing:0.417rem;
 }
