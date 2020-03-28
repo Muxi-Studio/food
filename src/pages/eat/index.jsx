@@ -46,7 +46,7 @@ export default class Index extends Component {
           limit:5
         },
     ).then(res=>{
-        console.log(res);
+        // console.log(res);
         if(res.code==0){
           let newdatas=res.data;
           if(this.state.page>1){

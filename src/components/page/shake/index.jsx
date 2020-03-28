@@ -1,7 +1,11 @@
 import Taro, { Component } from "@tarojs/taro";
-import { View, Text } from "@tarojs/components";
+import { View, Image } from "@tarojs/components";
 import Fetch from '../../../service/fetch';
 import md5 from './md5.min.js';
+import Shake from './shake.js';
+import MxIcon from '../../../components/common/MxIcon';
+import exam from '../../../assets/svg/example.svg';
+import Img from '../../../assets/svg/mobile.svg';
 import "./index.scss";
 
 export default class Index extends Component {
@@ -9,20 +13,29 @@ export default class Index extends Component {
   config = {
     // navigationBarTitleText: '首页'
   };
+    // "restaurant_name": "休闲食品",
+    // "canteen_name": "东一",
+    // "storey": 1,
+    // "average_price": 0,
+    // "picture_url": "",
+    // "recommendation": null
   constructor(props){
     super(props);
     this.latitude;
     this.longitude;
+    this.recommend=[{restaurant_name:'休闲食品',canteen_name:'东一',storey:'1',average_price:'7r',picture_url:exam,recommendation:'辣条'}]
     this.state ={
-      recommend:[]
+      present:0
     }
-}
+  }
   componentWillMount() {}
 
   componentDidMount() {
     // if (location.protocol != 'https:') {
     //   location.href = 'https:' + window.location.href.substring(window.location.protocol.length);
     //  }
+    this.Motion();
+    this.getNearby();
   }
 
   componentWillUnmount() {}
@@ -31,7 +44,7 @@ export default class Index extends Component {
 
   componentDidHide() {}
 
-  getMotionPermisson() {
+  Motion() {
     if (
       typeof DeviceMotionEvent !== "undefined" &&
       typeof DeviceMotionEvent.requestPermission === "function"
@@ -41,10 +54,13 @@ export default class Index extends Component {
           alert("Orientation tracking " + response);
 
           if (response == "granted") {
-            window.addEventListener("devicemotion", e => {
-              //getNearby事件触发条件
-              // document.getElementById("request").style.visibility = "hidden";
-            });
+            // window.addEventListener("devicemotion", e => {
+            //   //getNearby事件触发条件
+            //   // document.getElementById("request").style.visibility = "hidden";
+            // });
+            var myShakeEvent = new Shake();
+            myShakeEvent.start();
+            window.addEventListener('shake', this.shakeEventDidOccur, false);
           }
         })
         .catch(console.error);
@@ -53,25 +69,41 @@ export default class Index extends Component {
     }
   }
 
+  shakeEventDidOccur(){
+    var size = this.recommend.length;
+    this.setState({
+      present: (this.state.present + 1)==size?0:this.state.present + 1
+    })
+    alert('shake!');
+  }
   getLocation(){
-    return new Promise( (resolve,rejected)=>{
+    // function success(pos) {
+    //   var crd = pos.coords;
+    //   console.log('Your current position is:');
+    //   console.log('Latitude : ' + crd.latitude);
+    //   console.log('Longitude: ' + crd.longitude);
+    //   console.log('More or less ' + crd.accuracy + ' meters.');
+    // };
+    
+    function error(err) {
+      console.warn('ERROR(' + err.code + '): ' + err.message);
+    };
+    return new Promise( (resolve)=>{
       if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(
           // (position) =>{
           //   this.latitude = position.coords.latitude;
           //   this.longitude = position.coords.longitude;
           // }
-          e => resolve(e)
-        );
+          e => {console.log(e);resolve(e)},error);
       } else {
         alert("Geolocation is not supported by this browser.");
-        rejected("Geolocation is not supported by this browser");
       }
     })
   }
 
   getNearby(){
-   this.getLocation.then(
+   this.getLocation().then(
       position =>{
         //调用tencent webservice
         var sig = md5('/ws/distance/v1/?'
@@ -93,7 +125,7 @@ export default class Index extends Component {
                 [28.069227,'学子']
               ]);
               var nearby = '';
-              for(var i = 0; dis[i].distance < 20000; i++){
+              for(var i = 0; dis[i].distance < 10000; i++){
                 nearby = i ?nearby+','+ map[dis[i].to.lat]:nearby+map[dis[i].to.lat];
               }
               return new Promise( resolve =>{
@@ -105,24 +137,40 @@ export default class Index extends Component {
       }
     ).then(
       near =>{
-        Fetch('/api/v1/restaurant/random','GET',{canteen_name: near}).then(
+        console.log(near);
+        Fetch('/api/v1/restaurant/random?limit=20','GET',{canteen_name: near}).then(
           res =>{
-            this.setState({recommend:res.data})
+            this.recommend = res.data;
+            this.setState({present:res.data[0]})
           }
         )
       }
     ).catch( err => console.error(err));
   }
 
+  imitateShake(){
+    this.shakeEventDidOccur();
+  }
   render() {
-    var list = this.state.recommend;
+    var item = this.recommend[this.state.present];
+    // "restaurant_name": "休闲食品",
+    // "canteen_name": "东一",
+    // "storey": 1,
+    // "average_price": 0,
+    // "picture_url": "",
+    // "recommendation": null
     return (
-      <View className='index'>
-        {list.map((item,index)=>{
-          return(
-            <View key={index*0.3}></View>
-          )
-        })}
+      <View className='sha_index'>
+        <View className='sha_card-container'>
+          <View className='sha_img-container'><Image className='sha_pic' src={item.picture_url} mode='aspectFill'></Image></View>
+          <View className='sha_info'>
+            <View className='sha_shop'>{item.restaurant_name}</View>
+            <View className='sha_locate'>{item.canteen_name}{"   "}{item.storey}</View>
+            <View className='sha_price'>{item.average_price}</View>
+            <View className='sha_recomm'>{item.recommendation}</View>
+          </View>
+        </View>
+        <View className='sha_icon' onClick={this.imitateShake.bind(this)}><Image src={Img} className='sha_src'></Image></View>
       </View>
     );
   }
