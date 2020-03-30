@@ -69,7 +69,7 @@ const config = {
   },
   h5: {
     devServer:{
-      host: "localhost",
+      host: "192.168.1.8",
       port:10086,
       proxy:{
         '/api':{

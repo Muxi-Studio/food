@@ -39,7 +39,7 @@ export default class Index extends Taro.Component {
                 onFocus={this.handleFocus.bind(this)}
               ></Input>
               <View className='search-icon'>
-                <MxIcon type='search'></MxIcon>
+                <MxIcon type='search' width='0.7154rem' height='0.7154rem'></MxIcon>
               </View>
             </View>
         </View>

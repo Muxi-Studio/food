@@ -14,6 +14,7 @@ export default class Index extends Component {
     constructor() {
       super(...arguments);
       this.state = {
+        hall:'hall',
         datas:[],
         hidden: false,
         page:1,
@@ -72,6 +73,12 @@ export default class Index extends Component {
   
     componentWillMount () { 
       let cn=this.$router.params.title;
+      if (cn.length==3)
+      {
+        this.setState({
+          hall:'hall1'
+        })
+      }
       this.setState({
         cn:cn
       });
@@ -125,6 +132,9 @@ export default class Index extends Component {
               });
             }
           if(newdatas==null){
+            this.setState({
+              datas:[]
+            })
             Taro.showToast({
               title:'到底了',
               duration: 2000
@@ -159,18 +169,6 @@ export default class Index extends Component {
        }
       })
     }
-    // onScrollToUpper(){
-    //   if(this.state.page>1)
-    //   {
-    //     this.setState({
-    //       page:this.state.page-1
-    //     },
-    //     ()=>{
-    //       this.getHall()
-    //     }
-    //     )
-    //   }
-    // }
     onScrollToLower(){
       this.setState({
         page:this.state.page+1
@@ -217,7 +215,7 @@ export default class Index extends Component {
          <View className={this.state.masklist}>
            <View className='list'>
              <View className='picture'>
-               <MxIcon type='example' width='311' height='119'></MxIcon>
+               <MxIcon type='example' width='12.958rem' height='4.958rem'></MxIcon>
              </View>
              <View className='window'>
                窗口介绍
@@ -260,7 +258,7 @@ export default class Index extends Component {
       // eslint-disable-next-line react/jsx-key
       <View className='boxes'>
       <View className='box' onClick={this.handleList.bind(this,data.restaurant_id)}>
-        <MxIcon type='example' width='400' height='200'></MxIcon>
+        <MxIcon type='example' width='14.083rem' height='5.0rem'></MxIcon>
         <View className='place'>
             {data.restaurant_name}
         </View>
@@ -276,16 +274,16 @@ export default class Index extends Component {
         {mask && list}
       <View className='bar'>
        <View className='back' onClick={this.ChangeTohome.bind(this)}>
-          <MxIcon type='back' width='43' height='43'></MxIcon>
+          <MxIcon type='back' width='1.7rem' height='1.7rem'></MxIcon>
        </View>
-       <View className='hall'>
+       <View className={this.state.hall}>
          {hall}
        </View>
        <View className='one'>
          {!floor&&<Text>一楼</Text>}
          {floor&&<Text>二楼</Text>}
         <View className='pull' onClick={this.handlePull.bind(this)}>
-          <MxIcon type='pull' width='12' height='7'></MxIcon>
+          <MxIcon type='pull' width='0.5rem' height='0.292rem'></MxIcon>
         </View>
        </View>
       </View>
@@ -295,7 +293,7 @@ export default class Index extends Component {
           <View className='floor1'>
           一楼
           <View className='check'>
-            <MxIcon type='check' width='15' height='15'></MxIcon>
+            <MxIcon type='check' width='0.625rem' height='0.625rem'></MxIcon>
           </View>
         </View>
          }
@@ -303,14 +301,14 @@ export default class Index extends Component {
           <View className='floor2'>
              二楼
             <View className='uncheck' onClick={this.onCheck2.bind(this)}>
-               <MxIcon type='uncheck' width='15' height='15'></MxIcon>
+               <MxIcon type='uncheck' width='0.625rem' height='0.625rem'></MxIcon>
              </View>
            </View>}
         {floor&&
           <View className='floor2'>
           一楼
           <View className='uncheck' onClick={this.onCheck1.bind(this)}>
-            <MxIcon type='uncheck' width='15' height='15'></MxIcon>
+            <MxIcon type='uncheck' width='0.625rem' height='0.625rem'></MxIcon>
           </View>
         </View>
          }
@@ -318,7 +316,7 @@ export default class Index extends Component {
           <View className='floor1'>
              二楼
             <View className='check'>
-               <MxIcon type='check' width='15' height='15'></MxIcon>
+               <MxIcon type='check' width='0.625rem' height='0.625rem'></MxIcon>
              </View>
           </View>}
          </View>

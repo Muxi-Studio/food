@@ -58,8 +58,8 @@ export default class MxIcon extends MxComponent {
     ]);
 
     const rootStyle = {
-      width: `${Taro.pxTransform(parseInt(width))}`,
-      height: `${Taro.pxTransform(parseInt(height))}`,
+      width: `${width}`,
+      height: `${height}`,
       color:`${color}`
     };
     return (
@@ -79,8 +79,8 @@ export default class MxIcon extends MxComponent {
 }
 MxIcon.defaultProps = {
   className: '',
-  width: 40,
-  height: 40,
+  width: '40px',
+  height: '40px',
   type: '',
   color:'',
   outerStyle: {},

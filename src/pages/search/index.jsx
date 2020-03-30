@@ -63,7 +63,7 @@ export default class Index extends Component {
       <View className='s_index'>
         <View className='s_search-bar'>
             <View className='s_input-container'>
-                <View className='s_icon'><MxIcon type='search'></MxIcon></View>
+                <View className='s_icon'><MxIcon type='search' width='0.6654rem' height='0.6654rem'></MxIcon></View>
                 <Input className='s_input' 
                   placeholder='搜索食物、店家' 
                   placeholderClass='s_input-placeholder'

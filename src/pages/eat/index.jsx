@@ -106,7 +106,7 @@ export default class Index extends Component {
           <View className='card'>
             <View className='icon'>
               {/* <Image src={data.picture_url}></Image> */}
-              <MxIcon type='shop' width='77' height='72'></MxIcon>
+              <MxIcon type='shop' width='3.2083rem' height='3.0rem'></MxIcon>
             </View>
             <View className='news'>
               <View className='name'>
@@ -117,7 +117,7 @@ export default class Index extends Component {
               </View>
               <View className='label'>
                 <Text className='num'>{count}</Text>
-                <MxIcon type={types[number]} width='30' height='40'></MxIcon>
+                <MxIcon type={types[number]} width='1.25rem' height='1.667rem'></MxIcon>
               </View>
               <View className='introduce'>
                 {data.introduction}
@@ -126,7 +126,7 @@ export default class Index extends Component {
                  {data.canteen_name}
               </View>
               <View className='position'>
-                <MxIcon type='position' width='21' height='20'></MxIcon>
+                <MxIcon type='position' width='0.875rem' height='0.8333rem'></MxIcon>
               </View>
             </View>
           </View>
