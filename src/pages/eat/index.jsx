@@ -84,6 +84,7 @@ export default class Index extends Component {
       const Threshold=10
       const types=this.state.types
       let number=-1
+      let count=0
       const content = (
       <ScrollView
         scrollY
@@ -92,6 +93,7 @@ export default class Index extends Component {
         onScrollToLower={this.onScrollToLower.bind(this)}
       >
       {this.state.datas.map(data => {
+        count=count+1
         if(number<5)
         {
           number=number+1
@@ -114,7 +116,7 @@ export default class Index extends Component {
                  {data.resaurant_name}
               </View>
               <View className='label'>
-                <Text className='num'>{number+1}</Text>
+                <Text className='num'>{count}</Text>
                 <MxIcon type={types[number]} width='30' height='40'></MxIcon>
               </View>
               <View className='introduce'>
