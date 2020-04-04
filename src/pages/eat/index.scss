@@ -8,7 +8,7 @@
 }
 .card{
     //width:14.04rem;
-    height:3.83rem;
+    // height:3.83rem;
     background:rgba(255,255,255,1);
     box-shadow:0px 3px 6px rgba(0,0,0,0.16);
     opacity:1;
@@ -21,6 +21,9 @@
     width:3.208rem ;
     height:3rem;
 }
+.label{
+    position: relative
+}
 .num{
     position: absolute;
     z-index: 1005;
@@ -28,6 +31,15 @@
     color: #FFFFFF;
     font-size: 0.542rem;
     padding-left: 0.45rem;
+    padding-top:0.25rem
+}
+.num1{
+    position: absolute;
+    z-index: 1005;
+    text-align: center;
+    color: #FFFFFF;
+    font-size: 0.542rem;
+    padding-left: 0.3rem;
     padding-top:0.25rem
 }
 .news{
@@ -50,14 +62,15 @@
         opacity:1;
         margin-top: 0.5rem;
         margin-left: 1.25rem;
+        width:3.0rem ;
     }
     .label{
         float: left;
-        margin-left: 0.75rem;
+        margin-left: 0.5rem;
     }
     .introduce{
-        width:6.5rem;
-        height:0.5rem;
+        // width:6.5rem;
+        // height:0.5rem;
         font-size:0.5rem;
         font-family:SimHei;
         font-weight:400;

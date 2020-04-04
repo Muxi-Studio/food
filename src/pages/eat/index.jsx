@@ -16,6 +16,7 @@ export default class Index extends Component {
     constructor() {
       super(...arguments);
       this.state = {
+        num:'num',
         datas:[],
         types:['label1','label2','label3','label4','label5',
           // {name:'菜名菜名菜名',owner:'店家名称',introduce:'简短介绍：简短介绍简短介绍',hall:'所在食堂'},
@@ -87,6 +88,7 @@ export default class Index extends Component {
       let count=0
       const content = (
       <ScrollView
+        style='height:27.0833rem'
         scrollY
         lowerThreshold={Threshold}
         upperThreshold={Threshold}
@@ -94,11 +96,17 @@ export default class Index extends Component {
       >
       {this.state.datas.map(data => {
         count=count+1
-        if(number<5)
+        if(count>=10)
+        {
+          this.setState({
+            num:'num1'
+          })
+        }
+        if(number<4)
         {
           number=number+1
         }else{
-          number=0;
+          number=0
         }
       return (
         // eslint-disable-next-line react/jsx-key
@@ -116,7 +124,7 @@ export default class Index extends Component {
                  {data.resaurant_name}
               </View>
               <View className='label'>
-                <Text className='num'>{count}</Text>
+                <Text className={this.state.num}>{count}</Text>
                 <MxIcon type={types[number]} width='1.25rem' height='1.667rem'></MxIcon>
               </View>
               <View className='introduce'>

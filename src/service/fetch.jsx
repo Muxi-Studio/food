@@ -2,12 +2,13 @@ import Taro from '@tarojs/taro';
 
 // Fetch(url, data).then((res) => { console.log(res)})
 
+const preHttp = 'http://food.test.muxixyz.com';
 const Fetch = (url,  method = 'GET',data = {}) => {
   const header = {
     'content-type': 'application/json'
   };
   return Taro.request({
-    url: url,
+    url: preHttp+url,
     data,
     method,
     header
