@@ -69,8 +69,8 @@ const config = {
   },
   h5: {
     devServer:{
-      host: "192.168.1.8",
-      port:10086,
+      // host: "localhost",
+      // port:10086,
       proxy:{
         '/api':{
           target:'http://food.test.muxixyz.com/',

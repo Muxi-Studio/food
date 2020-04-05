@@ -1,11 +1,12 @@
 import Taro from "@tarojs/taro";
-import { View,Input,Text } from "@tarojs/components";
+import { View,Input,Text,Image } from "@tarojs/components";
 import MxTabs from "../../components/common/tabs/index";
 import  MxTabsPane  from "../../components/common/tabs-pane";
 import  Shake  from "../../components/page/shake";
 import Eat from "../eat/index"
 import Menu from "../menu/index"
 import MxIcon from "../../components/common/MxIcon"
+import pic from '../../assets/png/logo.jpg'
 import './index.scss'
 
 export default class Index extends Taro.Component {
@@ -32,7 +33,8 @@ export default class Index extends Taro.Component {
     return (
       <View className='homepage'>
         <View className='input-container'>
-            <View className='icon'></View>
+            <View className='h_icon'><Image src={pic} className='logo-image'></Image></View>
+            {/* <View className='h_icon'></View> */}
             <Text className='product-name'>匣子美食</Text>
             <View className='search'>
               <Input className='input' placeholder='搜索食物、窗口' placeholderClass='input-placehouder'

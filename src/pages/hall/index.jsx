@@ -66,9 +66,7 @@ export default class Index extends Component {
     }
 
     ChangeTohome() {
-      Taro.navigateTo({
-        url: '/pages/home/index'
-      });
+      Taro.navigateBack();
     }
   
     componentWillMount () { 

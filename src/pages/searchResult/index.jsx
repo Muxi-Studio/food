@@ -147,11 +147,11 @@ export default class Index extends Component {
       <View className='sr_index'>
         <View className='sr_navigationbar'>
           <View className='sr_back-icon' onClick={this.handleBack.bind(this)}>
-            <MxIcon type='back'></MxIcon>
+            <MxIcon type='back' height='0.85rem' width='0.85rem'></MxIcon>
           </View>
           <View className='sr_search'>
             <View className='sr_search-icon'>
-              <MxIcon type='search'></MxIcon>
+              <MxIcon type='search' height='0.75rem' width='0.75rem'></MxIcon>
             </View>
             <Input
               className='sr_input'

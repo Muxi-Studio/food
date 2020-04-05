@@ -18,7 +18,7 @@ import hall from '../../../assets/svg/hall.svg';
 import shop from '../../../assets/svg/shop.svg';
 import example from '../../../assets/svg/example.svg';
 import position from '../../../assets/svg/position.svg';
-
+import logo from '../../../assets/svg/logo.svg';
 
 import './index.scss';
 
@@ -54,7 +54,8 @@ export default class MxIcon extends MxComponent {
       ['example', example],
       ['check', check],
       ['uncheck', uncheck],
-      ['position', position]
+      ['position', position],
+      ['logo',logo]
     ]);
 
     const rootStyle = {

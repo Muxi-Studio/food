@@ -4,7 +4,7 @@ import Fetch from '../../../service/fetch';
 import md5 from './md5.min.js';
 import Shake from './shake.js';
 import MxIcon from '../../../components/common/MxIcon';
-import exam from '../../../assets/svg/example.svg';
+import exam from '../../../assets/png/shop.png';
 import Img from '../../../assets/svg/mobile.svg';
 import "./index.scss";
 
@@ -23,7 +23,7 @@ export default class Index extends Component {
     super(props);
     this.latitude;
     this.longitude;
-    this.recommend=[{restaurant_name:'休闲食品',canteen_name:'东一',storey:'1',average_price:'7r',picture_url:exam,recommendation:'辣条'}]
+    this.recommend=[{restaurant_name:'休闲食品',canteen_name:'东一',storey:'一楼',average_price:'7',picture_url:exam,recommendation:'辣条'}]
     this.state ={
       present:0
     }
@@ -65,7 +65,7 @@ export default class Index extends Component {
         })
         .catch(console.error);
     } else {
-      alert("DeviceMotionEvent is not defined");
+      // alert("DeviceMotionEvent is not defined");
     }
   }
 
@@ -165,9 +165,9 @@ export default class Index extends Component {
           <View className='sha_img-container'><Image className='sha_pic' src={item.picture_url} mode='aspectFill'></Image></View>
           <View className='sha_info'>
             <View className='sha_shop'>{item.restaurant_name}</View>
-            <View className='sha_locate'>{item.canteen_name}{"   "}{item.storey}</View>
-            <View className='sha_price'>{item.average_price}</View>
-            <View className='sha_recomm'>{item.recommendation}</View>
+            <View className='sha_locate'>{item.canteen_name}{' '}{item.storey}</View>
+            <View className='sha_price'>{"人均价格:"+item.average_price+"¥"}</View>
+            <View className='sha_recomm'>{"特色推荐:"+item.recommendation}</View>
           </View>
         </View>
         <View className='sha_icon' onClick={this.imitateShake.bind(this)}><Image src={Img} className='sha_src'></Image></View>
