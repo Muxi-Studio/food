@@ -41,7 +41,7 @@ export default class Index extends Component {
     getEat(){
       let ndatas=this.state.datas
       Fetch(
-        '/api/v1/food/recommend/',
+        '/api/v1/food/recommend',
         'GET',
         {
           page:this.state.page,

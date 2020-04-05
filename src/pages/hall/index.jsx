@@ -106,7 +106,7 @@ export default class Index extends Component {
       let ndatas=this.state.datas
       console.log(this.state.c)
       Fetch(
-        '/api/v1/restaurant/list/',
+        '/api/v1/restaurant/list',
         'GET',
         {
           page:this.state.page,
@@ -272,7 +272,7 @@ export default class Index extends Component {
         {mask && list}
       <View className='bar'>
        <View className='back' onClick={this.ChangeTohome.bind(this)}>
-          <MxIcon type='back' width='1.7rem' height='1.7rem'></MxIcon>
+          <MxIcon type='back' width='1rem' height='1rem'></MxIcon>
        </View>
        <View className={this.state.hall}>
          {hall}

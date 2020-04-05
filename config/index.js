@@ -71,12 +71,12 @@ const config = {
     devServer:{
       // host: "localhost",
       // port:10086,
-      proxy:{
-        '/api':{
-          target:'http://food.test.muxixyz.com/',
-          changeOrigin:'true'
-        }
-      }
+      // proxy:{
+      //   '/api':{
+      //     target:'http://food.test.muxixyz.com/',
+      //     changeOrigin:'true'
+      //   }
+      // }
     },
     publicPath: '/',
     staticDirectory: 'static',
