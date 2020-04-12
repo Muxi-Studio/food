@@ -1,5 +1,5 @@
 import Taro, { Component } from '@tarojs/taro'
-import { View,ScrollView,Text } from '@tarojs/components'
+import { View,Text } from '@tarojs/components'
 import MxIcon from '../../components/common/MxIcon/index';
 import './index.scss'
 import Fetch from '../../service/fetch';
@@ -8,7 +8,9 @@ export default class Index extends Component {
 
     // eslint-disable-next-line react/sort-comp
     config = {
-      navigationBarTitleText: '首页'
+     // navigationBarTitleText: '首页',
+      enablePullDownRefresh: true,
+    onReachBottomDistance: 50
     }
 
     constructor() {
@@ -36,6 +38,12 @@ export default class Index extends Component {
           {name:'菜名菜名',price:'5元'},
         ]
       };
+    }
+    onPullDownRefresh() {
+      this.getHall();
+    }
+    onReachBottom() {
+      this.getHall();
     }
 
     handleCancel() {
@@ -104,7 +112,6 @@ export default class Index extends Component {
 
     getHall(){
       let ndatas=this.state.datas
-      console.log(this.state.c)
       Fetch(
         '/api/v1/restaurant/list',
         'GET',
@@ -115,29 +122,21 @@ export default class Index extends Component {
           s:this.state.s
         },
       ).then(res=>{
-        console.log(res);
         if(res.code==0){
           let newdatas=res.data;
           if(this.state.page>1){
             if(newdatas!=null){
               ndatas=ndatas.concat(newdatas)
               this.setState({
-                datas:ndatas
+                datas:ndatas,
+                page:this.state.page+1
               })
             }}else{
               this.setState({
                 datas:newdatas,
+                page:this.state.page+1
               });
             }
-          if(newdatas==null){
-            this.setState({
-              datas:[]
-            })
-            Taro.showToast({
-              title:'到底了',
-              duration: 2000
-            });
-          }
        }
       })
     }
@@ -167,15 +166,6 @@ export default class Index extends Component {
        }
       })
     }
-    onScrollToLower(){
-      this.setState({
-        page:this.state.page+1
-      },
-      ()=>{
-        this.getHall()
-      }
-      )
-    }
 
     onCheck2(){
       this.setState({
@@ -203,7 +193,6 @@ export default class Index extends Component {
     const per = this.state.per;
     const details=this.state.details;
     const floor=this.state.floor;
-    const Threshold=10
     const list =(
       <View>
          <View
@@ -243,14 +232,7 @@ export default class Index extends Component {
       </View>
     )
     const content = (
-    <ScrollView
-      style='height:27.0833rem'
-      scrollY
-      lowerThreshold={Threshold}
-      upperThreshold={Threshold}
-      scrollWithAnimation
-      onScrollToLower={this.onScrollToLower.bind(this)}
-    >
+    <View>
     {this.state.datas.map(data => {
     return (
       // eslint-disable-next-line react/jsx-key
@@ -265,7 +247,7 @@ export default class Index extends Component {
     );
     })
   }
-  </ScrollView>
+  </View>
   );
     return(
       <View className='indexh'>

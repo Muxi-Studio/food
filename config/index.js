@@ -69,14 +69,14 @@ const config = {
   },
   h5: {
     devServer:{
-      // host: "localhost",
-      // port:10086,
-      // proxy:{
-      //   '/api':{
-      //     target:'http://food.test.muxixyz.com/',
-      //     changeOrigin:'true'
-      //   }
-      // }
+      host: "localhost",
+      port:10086,
+      proxy:{
+        '/api':{
+          target:'http://food.test.muxixyz.com/',
+          changeOrigin:'true'
+        }
+      }
     },
     publicPath: '/',
     staticDirectory: 'static',
