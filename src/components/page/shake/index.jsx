@@ -1,4 +1,4 @@
-import Taro, { Component } from "@tarojs/taro";
+import Taro, { Component, getStorageInfoSync } from "@tarojs/taro";
 import { View, Image } from "@tarojs/components";
 import Fetch from '../../../service/fetch';
 import md5 from './md5.min.js';
@@ -26,7 +26,8 @@ export default class Index extends Component {
     this.recommend=[{restaurant_name:'休闲食品',canteen_name:'东一',storey:'一楼',average_price:'7',picture_url:exam,recommendation:'辣条'}]
     this.state ={
       present:0
-    }
+    };
+    this.resJson = {};
   }
   componentWillMount() {}
 
@@ -34,22 +35,10 @@ export default class Index extends Component {
     // if (location.protocol != 'https:') {
     //   location.href = 'https:' + window.location.href.substring(window.location.protocol.length);
     //  }
-    this.Motion();
-    this.getNearby();
-  }
-
-  componentWillUnmount() {}
-
-  componentDidShow() {}
-
-  componentDidHide() {}
-
-  Motion() {
-    if (
-      typeof DeviceMotionEvent !== "undefined" &&
-      typeof DeviceMotionEvent.requestPermission === "function"
-    ) {
-      DeviceMotionEvent.requestPermission()
+    const system = Taro.getStorageSync('system');
+    if(system == "iOS"){
+       if(typeof(DeviceMotionEvent) !== 'undefined' &&typeof DeviceMotionEvent.requestPermission === "function"){
+        DeviceMotionEvent.requestPermission()
         .then(response => {
           alert("Orientation tracking " + response);
 
@@ -61,13 +50,26 @@ export default class Index extends Component {
             var myShakeEvent = new Shake();
             myShakeEvent.start();
             window.addEventListener('shake', this.shakeEventDidOccur, false);
+          }else{
+            alert('您已拒绝请求，将无法获得摇一摇响应，可重新载入页面，允许请求～')
           }
         })
         .catch(console.error);
-    } else {
-      // alert("DeviceMotionEvent is not defined");
+       }
+    }else{
+      var myShakeEvent = new Shake();
+      myShakeEvent.start();
+      window.addEventListener('shake', this.shakeEventDidOccur, false);
     }
+    this.getNearby();
   }
+
+  componentWillUnmount() {}
+
+  componentDidShow() {}
+
+  componentDidHide() {}
+
 
   shakeEventDidOccur(){
     var size = this.recommend.length;
@@ -76,6 +78,7 @@ export default class Index extends Component {
     })
     alert('shake!');
   }
+
   getLocation(){
     // function success(pos) {
     //   var crd = pos.coords;
@@ -86,64 +89,106 @@ export default class Index extends Component {
     // };
     
     function error(err) {
+      alert("error oh");
+      alert(err.message+err.code);
+      console.error(err);
       console.warn('ERROR(' + err.code + '): ' + err.message);
     };
     return new Promise( (resolve)=>{
       if (navigator.geolocation) {
+        //测试模拟代码
+        // (position) =>{
+        //   this.latitude = position.coords.latitude;
+        //   this.longitude = position.coords.longitude;
+        // }
+        // const event = {coords:{latitude:28.07368,longitude:115.002815}};
+        // resolve(event);
+
+        //生产代码先注释一下
         navigator.geolocation.getCurrentPosition(
-          // (position) =>{
-          //   this.latitude = position.coords.latitude;
-          //   this.longitude = position.coords.longitude;
-          // }
-          e => {console.log(e);resolve(e)},error);
+          e => {alert(e.coords.latitude);resolve(e)},error);
       } else {
         alert("Geolocation is not supported by this browser.");
       }
     })
   }
+  
+  useWebService(pos){
+    console.log('useWebService');
+    // function function1(obj){
+    //   this.resJson = obj;
+    // }
+    
+    let sig = md5('/ws/distance/v1/?'
+        +'callback=globalFun'
+        +'&from='+pos.coords.latitude+','+pos.coords.longitude
+        +'&key=BQBBZ-TRBCW-J3WRO-OUTER-2YMG5-2MF5X'+'&mode=walking'
+        +'&output=jsonp'
+        +'&to=28.086060,115.053455;28.069227,116.044310'
+        +'8kjYTMrC9zaOW9xTLS5N3EnB7HWviv')
+    const script = document.createElement("script");
+    script.src = 'https://apis.map.qq.com/ws/distance/v1/?'
+    +'callback=globalFun'
+    +'&from='+pos.coords.latitude+','+pos.coords.longitude
+    +'&key=BQBBZ-TRBCW-J3WRO-OUTER-2YMG5-2MF5X'+'&mode=walking'
+    +'&output=jsonp'
+    +'&to=28.086060,115.053455;28.069227,116.044310'
+    +'&sig='+sig;
+    script.async = false;
 
+    document.body.appendChild(script);
+  }
   getNearby(){
    this.getLocation().then(
       position =>{
-        //调用tencent webservice
-        var sig = md5('/ws/distance/v1/?'
-        +'from='+position.coords.latitude+','+position.coords.longitude
-        +'&key=BQBBZ-TRBCW-J3WRO-OUTER-2YMG5-2MF5X'+'&mode=walking'
-        +'&to=28.086060,115.053455;28.069227,116.044310'
-        +'8kjYTMrC9zaOW9xTLS5N3EnB7HWviv')
+        // 调用tencent webservice
+        this.useWebService(position);
+        console.log('调用use之后'+this.resJson);
+        return this.resJson;
+
+        // let nearby ='';
+        // var sig = md5('/ws/distance/v1/?'
+        // +'from='+position.coords.latitude+','+position.coords.longitude
+        // +'&key=BQBBZ-TRBCW-J3WRO-OUTER-2YMG5-2MF5X'+'&mode=walking'
+        // +'&to=28.086060,115.053455;28.069227,116.044310'
+        // +'8kjYTMrC9zaOW9xTLS5N3EnB7HWviv')
         
-        Taro.request({url:'https://apis.map.qq.com/ws/distance/v1/?'
-        +'from='+position.coords.latitude+','+position.coords.longitude
-        +'&key=BQBBZ-TRBCW-J3WRO-OUTER-2YMG5-2MF5X'+'&mode=walking'
-        +'&to=28.086060,115.053455;28.069227,116.044310'
-        +'&sig='+sig,method:'GET'}).then(
-          res => {
-            if(res.status == 0){
-              var dis = res.result.element.sort( (a,b) => a.distance - b.distance );
-              var map = new Map([
-                [28.086060,'东一'],
-                [28.069227,'学子']
-              ]);
-              var nearby = '';
-              for(var i = 0; dis[i].distance < 10000; i++){
-                nearby = i ?nearby+','+ map[dis[i].to.lat]:nearby+map[dis[i].to.lat];
-              }
-              return new Promise( resolve =>{
-                resolve(nearby);
-              })
-            }
-          }
-        )
+        // Taro.request({url:'https://apis.map.qq.com/ws/distance/v1/?'
+        // +'from='+position.coords.latitude+','+position.coords.longitude
+        // +'&key=BQBBZ-TRBCW-J3WRO-OUTER-2YMG5-2MF5X'+'&mode=walking'
+        // +'&to=28.086060,115.053455;28.069227,116.044310'
+        // +'&sig='+sig,method:'GET'})
+        // .then(
+        //   res => {
+        //     console.log('调用地图服务成功');
+        //     console.log(res);
+        //     if(res.status == 0){
+        //       var dis = res.result.element.sort( (a,b) => a.distance - b.distance );
+        //       var map = new Map([
+        //         [28.086060,'东一'],
+        //         [28.069227,'学子']
+        //       ]);
+        //       for(var i = 0; dis[i].distance < 10000; i++){
+        //         nearby = i ?nearby+','+ map[dis[i].to.lat]:nearby+map[dis[i].to.lat];
+        //       }
+        //       // return nearby
+        //     }
+        //   },
+        //   err =>{
+        //     console.error(err);
+        //   }
+        // )
+        // return nearby;
       }
     ).then(
       near =>{
         console.log(near);
-        Fetch('/api/v1/restaurant/random?limit=20','GET',{canteen_name: near}).then(
-          res =>{
-            this.recommend = res.data;
-            this.setState({present:res.data[0]})
-          }
-        )
+        // Fetch('/api/v1/restaurant/random?limit=20','POST',{canteen_name: near}).then(
+        //   res =>{
+        //     this.recommend = res.data;
+        //     this.setState({present:res.data[0]})
+        //   }
+        // )
       }
     ).catch( err => console.error(err));
   }

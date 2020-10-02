@@ -27,7 +27,17 @@ class App extends Component {
     }
   }
 
-  componentDidMount () {}
+  componentDidMount () {
+    Taro.getSystemInfo({
+      success: res =>{
+        Taro.setStorage({key:"system",data:res.system});
+      }
+    }).catch(
+      err =>{
+        console.error(err);
+      }
+    )
+  }
 
   componentDidShow () {}
 

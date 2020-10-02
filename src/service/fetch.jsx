@@ -3,10 +3,10 @@ import Taro from '@tarojs/taro';
 // Fetch(url, data).then((res) => { console.log(res)})
 
 const preHttp = 'http://food.test.muxixyz.com';
-const Fetch = (url,  method = 'GET',data = {}) => {
-  const header = {
-    'content-type': 'application/json'
-  };
+const defHeader = {
+  'content-type': 'application/json'
+};
+const Fetch = (url,  method = 'GET',data = {},header=defHeader) => {
   return Taro.request({
     url: preHttp+url,
     data,

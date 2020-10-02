@@ -1,3 +1,5 @@
+var fs = require('fs');
+
 const config = {
   projectName: 'cate',
   date: '2020-2-23',
@@ -69,6 +71,12 @@ const config = {
   },
   h5: {
     devServer:{
+      // https:{
+      //   key: fs.readFileSync('/Users/mac/Desktop/example-cert/server.key'),
+      //   cert: fs.readFileSync('/Users/mac/Desktop/example-cert/server.crt'),
+      //   ca: fs.readFileSync('/Users/mac/Desktop/example-cert/rootCA.pem'),
+      // }
+      // https: true
       // host: "localhost",
       // port:10086,
       // proxy:{
@@ -103,7 +111,6 @@ const config = {
     }
   }
 }
-
 module.exports = function (merge) {
   if (process.env.NODE_ENV === 'development') {
     return merge({}, config, require('./dev'))
