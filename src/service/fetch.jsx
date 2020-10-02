@@ -8,7 +8,7 @@ const defHeader = {
 };
 const Fetch = (url,  method = 'GET',data = {},header=defHeader) => {
   return Taro.request({
-    url: preHttp+url,
+    url: url,
     data,
     method,
     header

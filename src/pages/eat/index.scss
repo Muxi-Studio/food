@@ -30,16 +30,7 @@
     text-align: center;
     color: #FFFFFF;
     font-size: 0.542rem;
-    padding-left: 0.45rem;
-    padding-top:0.25rem
-}
-.num1{
-    position: absolute;
-    z-index: 1005;
-    text-align: center;
-    color: #FFFFFF;
-    font-size: 0.542rem;
-    padding-left: 0.3rem;
+    padding-left: 0.4rem;
     padding-top:0.25rem
 }
 .news{
@@ -90,4 +81,9 @@
         float: left;
         margin-top: 0.458rem;
     }
+}
+.fresh{
+    color: #b1b1b1;
+    text-align: center;
+    font-size: 0.583rem;
 }
